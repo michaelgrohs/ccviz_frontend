@@ -42,7 +42,6 @@ const WelcomePage: React.FC = () => {
   } = useFileContext();
 
   const API_BASE = "https://ccviz-backend.onrender.com";
-    fetch(`${API_BASE}/api/fitness`)
 
   const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -164,16 +163,8 @@ const WelcomePage: React.FC = () => {
       const endTime = performance.now();
       const elapsedMs = endTime - startTime;
       console.log(`handleUploadOrNavigate took ${elapsedMs.toFixed(2)} ms`);
-      // Send timing to backend to save
-      try {
-        await fetch(`${API_BASE}/api/save-timing`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ elapsedMs })
-        });
-      } catch (err) {
-        console.error("Failed to save timing:", err);
-      }
+
+
     }
   };
 
