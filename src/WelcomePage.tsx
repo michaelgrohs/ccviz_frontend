@@ -78,6 +78,28 @@ const WelcomePage: React.FC = () => {
     navigate('/view-bpmn');
   };
 
+  const handleWakeUp = async () => {
+    const timeout = 60000; // 60 seconds
+    const start = Date.now();
+
+    try {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeout);
+
+      await fetch(`${API_BASE}/ping`, { signal: controller.signal });
+      clearTimeout(id);
+
+      const elapsed = Date.now() - start;
+      if (elapsed <= timeout) {
+        window.alert("Backend active");
+      } else {
+        window.alert("Backend took longer than 1 minute to awake");
+      }
+    } catch (error) {
+      window.alert("Backend took longer than 1 minute to awake");
+    }
+  };
+
   const handleUploadOrNavigate = async () => {
     const startTime = performance.now(); // start timing
 
@@ -202,6 +224,9 @@ const WelcomePage: React.FC = () => {
       <Typography variant="body1" gutterBottom sx={{ marginBottom: 3 }}>
         Upload your BPMN and XES files to start analyzing process conformance.
       </Typography>
+       <button onClick={handleWakeUp} style={{ padding: "10px 20px", marginTop: "10px" }}>
+        Wake Backend
+      </button>
 
       <Stack spacing={3}>
         {/* BPMN upload */}
