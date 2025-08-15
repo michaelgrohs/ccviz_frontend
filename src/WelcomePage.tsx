@@ -170,8 +170,8 @@ const WelcomePage: React.FC = () => {
 
   const handlePreloadDataset = async () => {
     try {
-      const bpmnResponse = await fetch(`${API_BASE}/preload/default.bpmn`);
-      const xesResponse = await fetch(`${API_BASE}/preload/default.xes`);
+      const bpmnResponse = await fetch(`${API_BASE}/preload/Model_A_corrected.bpmn`);
+      const xesResponse = await fetch(`${API_BASE}/preload/BPIC12_Log_onlyA.csv`);
       if (!bpmnResponse.ok || !xesResponse.ok) throw new Error('Failed to fetch default files');
 
       const bpmnText = await bpmnResponse.text();
