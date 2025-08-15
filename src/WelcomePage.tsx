@@ -202,8 +202,8 @@ const WelcomePage: React.FC = () => {
       const bpmnBlob = new Blob([bpmnText], { type: 'text/xml' });
       const xesBlob = new Blob([xesText], { type: 'text/xml' });
 
-      const bpmnFile = new File([bpmnBlob], 'default.bpmn', { type: 'text/xml' });
-      const xesFile = new File([xesBlob], 'default.xes', { type: 'text/xml' });
+      const bpmnFile = new File([bpmnBlob], 'Model_A_corrected.bpmn', { type: 'text/xml' });
+      const xesFile = new File([xesBlob], 'BPIC12_Log_onlyA.csv', { type: 'text/xml' });
 
       setBpmnFile(bpmnFile);
       setXesFile(xesFile);
