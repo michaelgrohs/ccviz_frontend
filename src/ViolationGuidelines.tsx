@@ -66,9 +66,20 @@ const ViolationGuidelines: React.FC = () => {
   );
 
   const isNumericAttribute = React.useMemo(() => {
-    const data = attributeConformance[selectedAttribute] ?? [];
-    return data.length > 0 && data.every(item => !isNaN(Number(item.value)));
-  }, [attributeConformance, selectedAttribute]);
+      if (
+        selectedAttribute === "event:org:resource" ||
+        selectedAttribute === "event:org:role"
+      ) {
+        // Force categorical for these
+        return false;
+      }
+
+      const data = attributeConformance[selectedAttribute] ?? [];
+      return (
+        data.length > 0 &&
+        data.every((item) => !isNaN(Number(item.value)))
+      );
+    }, [attributeConformance, selectedAttribute]);
 
   const categoricalChartData = {
     labels: filteredAttributeData.map((r) => r.value),
