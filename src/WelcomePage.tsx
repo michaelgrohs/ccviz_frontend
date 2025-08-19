@@ -79,7 +79,7 @@ const WelcomePage: React.FC = () => {
   };
 
   const handleWakeUp = async () => {
-    const timeout = 60000; // 60 seconds
+    const timeout = 120000; // 120 seconds
     const start = Date.now();
 
     try {
